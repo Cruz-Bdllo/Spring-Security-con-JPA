@@ -15,7 +15,6 @@ public class User implements Serializable {
     /*      P R O P E R T I E S
     --------------------------------- */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String rfc;
 
     @Column(name = "firstname")
@@ -48,8 +47,7 @@ public class User implements Serializable {
 
     /*        M E T H O D S
     --------------------------------- */
-    public User() {
-    }
+    public User() {authorities = new ArrayList<Authority>();}
     public User(String rfc, String firstName, String lastName, String email, int age) {
         this.rfc = rfc;
         this.firstName = firstName;

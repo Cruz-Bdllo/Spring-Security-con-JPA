@@ -10,7 +10,7 @@
         <h1 class="text-center">Add new user</h1>
         <p class="alert alert-secondary">Fill the form below:</p>
 
-        <form th:action="@{/save-user}" method="post" th:object="${user}" class="my-2">
+        <form th:action="@{/users/save-user}" method="post" th:object="${user}" class="my-2">
             <!-- rfc -->
             <div class="row my-3">
                 <div class="col-12 col-md-6">
@@ -73,7 +73,8 @@
                 <!-- Mostrar las autorizaciones si las hay -->
                 <div class="authorities col-12" th:if="${!#lists.isEmpty(authorities)}">
                     <div class="col-12 form-check alert alert-info" th:each="autho : ${authorities}">
-                        <input class="form-check-input ml-3" type="checkbox" th:id="'autho'+${autho.idAutho}" th:value="${autho.idAutho}">
+                        <input class="form-check-input ml-3" type="checkbox" name="idAuthos"
+                               th:id="'autho'+${autho.idAutho}" th:value="${autho.idAutho}">
                         <label class="form-check-label ml-5" th:for="'autho'+${autho.idAutho}" th:text="${autho.name}">
                         </label>
                         <span class="text-secondary ml-3" th:text="${autho.description}"></span>
