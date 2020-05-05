@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
-    private final long serialVersionUID = 1L;
+    private static long serialVersionUID = 1L;
 
     /*      P R O P E R T I E S
     --------------------------------- */
@@ -18,10 +18,10 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String rfc;
 
-    @Column(name = "firstName")
+    @Column(name = "firstname")
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "lastname")
     private String lastName;
 
     private String email;
