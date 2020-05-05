@@ -15,8 +15,6 @@ public class Authority implements Serializable {
 
     private String name;
 
-    private boolean enabled;
-
     private String description;
 
 
@@ -24,9 +22,8 @@ public class Authority implements Serializable {
     --------------------------------- */
     public Authority() {
     }
-    public Authority(String name, boolean enabled, String description) {
+    public Authority(String name, String description) {
         this.name = name;
-        this.enabled = enabled;
         this.description = description;
     } // end constructors
 
@@ -44,14 +41,6 @@ public class Authority implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 
     public String getDescription() {

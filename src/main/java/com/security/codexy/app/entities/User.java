@@ -31,6 +31,8 @@ public class User implements Serializable {
 
     private String password;
 
+    private boolean enabled;
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "user_authority",
@@ -102,6 +104,14 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public List<Authority> getAuthorities() {

@@ -1,10 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<!doctype html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="includes/layout :: head"></head>
 <body>
+    <!-- Navbar -->
+    <header th:replace="includes/layout :: header"></header>
 
+
+    <div class="container my-5">
+        <h1 class="text-center">Add new user</h1>
+        <p class="alert alert-secondary">Fill the form below:</p>
+
+        <form th:action="@{/save-user}" method="post" th:object="${user}" class="my-2">
+            <!-- rfc -->
+            <div class="row my-3">
+                <div class="col-12 col-md-6">
+                    <label for="rfc">RFC</label>
+                    <input type="text" placeholder="XXXX" class="form-control" id="rfc" th:field="*{rfc}">
+                </div>
+            </div>
+
+            <!-- first and last name -->
+            <div class="form-row my-3">
+                <div class="col form-group">
+                    <label for="firstname">First name</label>
+                    <input type="text" id="firstname" placeholder="Pedro" class="form-control" th:field="*{firstName}">
+                </div>
+                <div class="col form-group">
+                    <label for="lastname">Lastname</label>
+                    <input type="text" id="lastname" class="form-control" placeholder="González" th:field="*{lastName}">
+                </div>
+            </div>
+
+            <!-- first and last name -->
+            <div class="form-row my-3">
+                <div class="col form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="correo@correo.com" th:field="*{email}">
+                </div>
+                <div class="form-group col">
+                    <label for="age">Select your age</label>
+                    <input type="number" id="age" class="form-control" placeholder="Age" th:field="*{age}">
+                </div>
+            </div>
+
+            <!-- Match password -->
+            <div class="form-row my-3">
+                <div class="col form-group">
+                    <label for="pass1">Password</label>
+                    <input type="password" id="pass1" class="form-control" th:field="*{password}">
+                </div>
+                <div class="col form-group">
+                    <label for="pass2">Confirm password</label>
+                    <input type="password" id="pass2" class="form-control">
+                </div>
+            </div>
+
+            <!-- Authorities -->
+            <div class="form-row my-3">
+                <h3 class="text-center">Authorities</h3>
+                <hr>
+                <!-- Si no hay autorizaciones mostrar -->
+                <div class="card border-info col-12" th:if="${#lists.isEmpty(authorities)}">
+                    <div class="card-header">Authorities</div>
+                    <div class="card-body text-info">
+                        <h5 class="card-title">Without authorities for assign</h5>
+                        <p class="card-text text-center">
+                            <a th:href="@{/autho/}" class="btn btn-outline-primary">Create new authority</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Mostrar las autorizaciones si las hay -->
+                <div class="authorities col-12" th:if="${!#lists.isEmpty(authorities)}">
+                    <div class="col-12 form-check alert alert-info" th:each="autho : ${authorities}">
+                        <input class="form-check-input ml-3" type="checkbox" th:id="'autho'+${autho.idAutho}" th:value="${autho.idAutho}">
+                        <label class="form-check-label ml-5" th:for="'autho'+${autho.idAutho}" th:text="${autho.name}">
+                        </label>
+                        <span class="text-secondary ml-3" th:text="${autho.description}"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- save user -->
+            <input type="submit" value="Save user" class="btn btn-success btn-block">
+        </form>
+    </div>
+
+
+    <!-- footer -->
+    <footer th:replace="includes/layout :: footer"></footer>
+    <!-- Scripts -->
+    <script th:replace="includes/layout :: jquery"></script>
+    <script th:replace="includes/layout :: popper"></script>
+    <script th:replace="includes/layout :: js-bootstrap"></script>
 </body>
 </html>

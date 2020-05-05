@@ -8,7 +8,7 @@
         <h1 class="text-center">users page</h1>
 
         <div class="mt-5 mb-3">
-            <a th:href="@{/new-user}" class="btn btn-outline-primary">Add new user</a>
+            <a th:href="@{/users/new-user}" class="btn btn-outline-primary">Add new user</a>
         </div>
         <table class="table table-bordered mb-4 text-center">
             <thead class="thead-dark">
@@ -16,6 +16,7 @@
                     <th>RFC</th>
                     <th>Name user</th>
                     <th>Email</th>
+                    <th>Active</th>
                     <th>View</th>
                     <th>Update</th>
                     <th>Delete</th>
@@ -23,12 +24,13 @@
             </thead>
             <tbody>
                 <tr th:if="${#lists.isEmpty(users)}" class="table-primary">
-                    <td colspan="6">have not added any users</td>
+                    <td colspan="7">have not added any users</td>
                 </tr>
                 <tr th:if="${!#lists.isEmpty(users)}" th:each="user : ${users}">
                     <td th:text="${user.rfc}"></td>
                     <td th:text="${user.firstName} + ${user.lastName}"></td>
                     <td th:text="${user.email}"></td>
+                    <td th:text="${user.enabled}"></td>
                     <td>
                         <a th:href="@{'/view/'+${user.rfc}}">manager</a>
                     </td>
