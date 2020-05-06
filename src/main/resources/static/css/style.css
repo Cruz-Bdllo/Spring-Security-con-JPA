@@ -16,3 +16,23 @@ html, body{
 .btn-login:hover{
     color:white;
 }
+.bg-mist{
+    background: #90AFC5;
+}
+.bg-stone{
+    background: #336B87;
+}
+.bg-shadow{
+    background: #2A3132;
+}
+.bg-autumn{
+    background: #763626;
+}
+.thead-stone{
+    color:#fff;
+    background-color:#336B87;
+    border-color:#454d55;
+}
+.mcb{
+    margin-bottom: 130px;
+}

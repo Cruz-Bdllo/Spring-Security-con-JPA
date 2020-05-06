@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="includes/layout :: head"></head>
+<body>
+    <header th:replace="includes/layout :: header"></header>
+
+    <div class="container my-5">
+        <h1 class="text-center">roles page</h1>
+
+        <!-- Agregar un nuevo role -->
+        <div class="mt-5 mb-3">
+            <button type="button" data-toggle="modal" data-target="#newRole"
+                    class="btn btn-outline-primary">Add new role</button>
+        </div>
+
+        <!-- Tabla de contenido -->
+        <table class="table table-bordered mb-4 text-center">
+            <thead class="thead-stone">
+                <tr>
+                    <th>ID ROLE</th>
+                    <th>Name role</th>
+                    <th>Description</th>
+                    <th sec:authorize="hasAnyAuthority('ROLE_ADMIN')">Update</th>
+                    <th sec:authorize="hasAnyAuthority('ROLE_ADMIN')">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${#lists.isEmpty(roles)}" class="table-primary">
+                    <td colspan="7">have not added any role</td>
+                </tr>
+                <tr th:if="${!#lists.isEmpty(roles)}" th:each="role : ${roles}">
+                    <td th:text="${role.idAutho}"></td>
+                    <td th:text="${role.name}"></td>
+                    <td th:text="${role.description}"></td>
+                    <td sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                        <a class="btn btn-warning" th:href="@{'/update-role/'+${role.idAutho}}">update</a>
+                    </td>
+                    <td sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                        <a class="btn btn-danger" th:href="@{'/delete-role/'+${role.idAutho}}">delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="newRole" tabindex="-1" role="dialog" aria-labelledby="newRole" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agrega un nuevo role</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/roles/save-role}" method="post">
+                        <div class="form-group">
+                            <label for="nameRole">Name role</label>
+                            <input type="text" class="form-control" id="nameRole" placeholder="ADMIN">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description role</label>
+                            <input type="text" class="form-control" id="description" placeholder="Allow ...">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer th:replace="includes/layout :: footer"></footer>
+    <!-- Scripts -->
+    <script th:replace="includes/layout :: jquery"></script>
+    <script th:replace="includes/layout :: popper"></script>
+    <script th:replace="includes/layout :: js-bootstrap"></script>
+</body>
+</html>

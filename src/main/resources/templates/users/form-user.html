@@ -8,6 +8,7 @@
 
     <div class="container my-5">
         <h1 class="text-center">Add new user</h1>
+        <a th:href="@{/users/}" class="btn btn-info">Regresar</a>
         <p class="alert alert-secondary">Fill the form below:</p>
 
         <form th:action="@{/users/save-user}" method="post" th:object="${user}" class="my-2">
