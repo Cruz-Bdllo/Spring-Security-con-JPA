@@ -4,9 +4,6 @@
 <body>
     <header th:replace="includes/layout :: header"></header>
 
-    <p th:text="${#authentication.name}"></p><!-- email -->
-    <p>Roles: <span sec:authentication="principal.authorities"></span></p>
-
     <div class="container my-5">
         <h1 class="text-center">users page</h1>
 
@@ -20,9 +17,9 @@
                     <th>Name user</th>
                     <th>Email</th>
                     <th>Active</th>
-                    <th>View</th>
-                    <th>Update</th>
-                    <th>Delete</th>
+                    <th sec:authorize="hasAnyAuthority('ROLE_ADMIN')">View</th>
+                    <th sec:authorize="hasAnyAuthority('ROLE_ADMIN')">Update</th>
+                    <th sec:authorize="hasAnyAuthority('ROLE_ADMIN')">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,15 +32,15 @@
                     <td th:text="${user.email}"></td>
                     <td>
                         <span class="badge p-2" th:classappend="${user.enabled ? ' badge-success':' badge-danger'}"
-                              th:text="${user.enabled} ? 'activo' : 'inactivo'"></span>
+                              th:text="${user.enabled} ? 'ACTIVE' : 'INACTIVE'"></span>
                     </td>
-                    <td>
+                    <td sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
                         <a class="btn btn-primary" th:href="@{'/view/'+${user.rfc}}">managment</a>
                     </td>
-                    <td>
+                    <td sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
                         <a class="btn btn-warning" th:href="@{'/update-user/'+${user.rfc}}">update</a>
                     </td>
-                    <td>
+                    <td sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
                         <a class="btn btn-danger" th:href="@{'/delete-user/'+${user.rfc}}">delete</a>
                     </td>
                 </tr>

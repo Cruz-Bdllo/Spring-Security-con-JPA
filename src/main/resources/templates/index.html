@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" xmlns:th="https://www.thymeleaf.org">
+<html lang="es" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="includes/layout :: head"></head>
 <body>
     <!-- Navbar -->
@@ -8,6 +8,9 @@
     <div class="container my-5">
         <h1 class="text-center">Hello</h1>
     </div>
+
+    <p th:text="${#authentication.name}"></p><!-- email -->
+    <p>Roles: <span sec:authentication="principal.authorities"></span></p>
 
     <!-- Footer -->
     <footer th:replace="includes/layout :: footer"></footer>
