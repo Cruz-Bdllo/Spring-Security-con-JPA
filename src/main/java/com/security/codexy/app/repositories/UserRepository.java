@@ -25,7 +25,7 @@ public interface UserRepository extends CrudRepository<User, Integer> {
      * @return puede retornar un onjeto <b>User</b> de encontrarlo en la BD de lo contrario regresara <b>null</b>
      */
     @Query("SELECT u FROM User u WHERE u.email = ?1")
-    Optional<User> findUserByEmail(String email);
+    User findUserByEmail(String email);
 
     /**
      * Méthodo para eliminar un registro de la BD dado el RFC del usuario

@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
@@ -17,10 +19,10 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<User> user = userService.findUserByEmail(email);
-        user.orElseThrow(() -> new UsernameNotFoundException("not user find"));
+        User user = userService.findUserByEmail(email);
+        //user.orElseThrow(() -> new UsernameNotFoundException("not user find"));
 
 
-        return user.map(MyUserDetails ::new ).get();
+        return new MyUserDetails(user);
     }
 } // end class

@@ -14,4 +14,11 @@ public class IndexController {
         return "index";
     } // end index
 
+    @GetMapping("/error403")
+    public String error403(Model model){
+        model.addAttribute("title", "Acceso denegado");
+
+        return "error403";
+    } // end of error
+
 } // end controller

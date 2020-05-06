@@ -33,8 +33,9 @@ public class UserService implements IUserService{
     } // end of method for find one user throught their rfc
 
     @Override
-    public Optional<User> findUserByEmail(String email) {
-        return Optional.of(userRepository.findUserByEmail(email).orElse(null));
+    @Transactional(readOnly = true)
+    public User findUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
     }
 
     @Override

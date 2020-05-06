@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="includes/layout :: head"></head>
+<body>
+<!-- navbar -->
+<header th:replace="includes/layout :: header"></header>
+
+<div class="container mt-5">
+    <h1>
+        <p>
+            <span sec:authorize="isAuthenticated()" sec:authentication="name"></span>
+            no tienes acceso a esta página.
+        </p>
+    </h1>
+
+    <a th:href="@{/}" class="btn btn-danger text-center">Regresar</a>
+</div>
+
+
+<!-- footer -->
+<footer th:replace="includes/layout :: footer"></footer>
+<!-- scripts -->
+<script th:replace="includes/layout :: jquery"></script>
+<script th:replace="includes/layout :: popper"></script>
+<script th:replace="includes/layout :: js-bootstrap"></script>
+</body>
+</html>

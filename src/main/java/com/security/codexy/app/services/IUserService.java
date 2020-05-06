@@ -27,7 +27,7 @@ public interface IUserService {
      * @param email requiere un parametro de tipo String, siendo este la primary key de la tabla
      * @return Retorna un <b>User</b> de lo contrario regresara <b>null</b>
      */
-    Optional<User> findUserByEmail(String email);
+    User findUserByEmail(String email);
 
     /**
      * El cual guardara el contenido del objeto en la BD

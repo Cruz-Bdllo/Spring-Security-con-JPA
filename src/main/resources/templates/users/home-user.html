@@ -1,8 +1,11 @@
 <!doctype html>
-<html lang="es" xmlns:th="https://www.thymeleaf.org">
+<html lang="es" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="includes/layout :: head"></head>
 <body>
     <header th:replace="includes/layout :: header"></header>
+
+    <p th:text="${#authentication.name}"></p><!-- email -->
+    <p>Roles: <span sec:authentication="principal.authorities"></span></p>
 
     <div class="container my-5">
         <h1 class="text-center">users page</h1>
