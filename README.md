@@ -64,6 +64,7 @@ El cual permite establecer usuarios y roles para el acceso a ciertos recursos de
 14. En el método `configure(HttpSecurity http) throws Exception {}`  se establecen las rutas a las que puede acceder el usuario de acuerdo al role que se le asigno, tambien permite personalizar el **login** pues spring nos proporciona un de manera predeterminada.
 
 ## Imagenes de muestra 
+
 #### Login
 ![login][img-login]
 
@@ -84,3 +85,9 @@ El cual permite establecer usuarios y roles para el acceso a ciertos recursos de
 [img-home-users]:https://raw.githubusercontent.com/Cruz-Bdllo/Spring-Security-con-JPA/master/images%20proyect/home%20users.png "Home page users"
 [img-form-users]:https://raw.githubusercontent.com/Cruz-Bdllo/Spring-Security-con-JPA/master/images%20proyect/form%20new%20user.png "user form"
 [img-read-only]:https://raw.githubusercontent.com/Cruz-Bdllo/Spring-Security-con-JPA/master/images%20proyect/read%20only.png "user that can read only"
+
+### Continuara ...
+
+[img-diagrama]:ruta/mer.png "Diagrama"
+[img-entities]:ruta/relationship-entities.png "Relación de entidades"
+
