@@ -2,6 +2,7 @@ package com.security.codexy.app.services;
 
 import com.security.codexy.app.entities.MyUserDetails;
 import com.security.codexy.app.entities.User;
+import com.security.codexy.app.repositories.UserRepository;
 import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,14 +16,13 @@ import java.util.Optional;
 public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private IUserService userService;
+    private UserRepository userService;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userService.findUserByEmail(email);
-        //user.orElseThrow(() -> new UsernameNotFoundException("not user find"));
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<User> user = userService.findUserByEmail(username);
+        user.orElseThrow(() -> new UsernameNotFoundException("not user find"));
 
-
-        return new MyUserDetails(user);
+        return user.map(MyUserDetails::new).get();
     }
 } // end class

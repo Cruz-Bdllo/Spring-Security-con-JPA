@@ -35,13 +35,13 @@
                               th:text="${user.enabled} ? 'ACTIVE' : 'INACTIVE'"></span>
                     </td>
                     <td sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-                        <a class="btn btn-primary" th:href="@{'/view/'+${user.rfc}}">managment</a>
+                        <a class="btn btn-primary" th:href="@{'/users/view/'+${user.rfc}}">managment</a>
                     </td>
                     <td sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-                        <a class="btn btn-warning" th:href="@{'/update-user/'+${user.rfc}}">update</a>
+                        <a class="btn btn-warning" th:href="@{'/users/update-user/'+${user.rfc}}">update</a>
                     </td>
                     <td sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-                        <a class="btn btn-danger" th:href="@{'/delete-user/'+${user.rfc}}">delete</a>
+                        <a class="btn btn-danger" th:href="@{'/users/delete-user/'+${user.rfc}}">delete</a>
                     </td>
                 </tr>
             </tbody>

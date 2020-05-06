@@ -53,11 +53,28 @@ public class UserController {
         return "redirect:/users/";
     } // end save user
 
-    @RequestMapping("/view/{rfc}")
+    @GetMapping("/view/{rfc}")
     public String viewProfile(@PathVariable String rfc, Model model){
-        User user = userService.findUserByRfc(rfc).orElse(null);
+        User user = userService.findUserByRfc(rfc);
+        model.addAttribute("user", user);
 
-        return "users/profile";
+        return (user != null) ? "users/profile" : "redirect:/users/";
     } // end profile
+
+    @GetMapping("/update-user/{rfc}")
+    public String updateUser(@PathVariable String rfc, Model model){
+        User user = userService.findUserByRfc(rfc);
+        model.addAttribute("user", user);
+        model.addAttribute("authorities", authorityService.findAllAuthorities());
+
+        return "users/form-user";
+    } // end update user
+
+    @GetMapping("/delete-user/{rfc}")
+    public String deleteUser(@PathVariable String rfc){
+        userService.deleteUserByRfc(rfc);
+
+        return "redirect:/users/";
+    } // end delete
 
 } // end controller

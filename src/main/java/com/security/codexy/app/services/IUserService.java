@@ -21,7 +21,7 @@ public interface IUserService {
      * @param rfc requiere un parametro de tipo String, siendo este la primary key de la tabla
      * @return Retorna un <b>User</b> de lo contrario regresara <b>null</b>
      */
-    Optional<User> findUserByRfc(String rfc);
+    User findUserByRfc(String rfc);
 
     /**
      * @param email requiere un parametro de tipo String, siendo este la primary key de la tabla

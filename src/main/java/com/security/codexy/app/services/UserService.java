@@ -28,14 +28,15 @@ public class UserService implements IUserService{
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<User> findUserByRfc(String rfc) {
-        return Optional.of(userRepository.findUserByRfc(rfc).orElse(null));
+    public User findUserByRfc(String rfc) {
+        return userRepository.findUserByRfc(rfc).orElse(null);
+        //return Optional.of(userRepository.findUserByRfc(rfc).orElse(null));
     } // end of method for find one user throught their rfc
 
     @Override
     @Transactional(readOnly = true)
     public User findUserByEmail(String email) {
-        return userRepository.findUserByEmail(email);
+        return userRepository.findUserByEmail(email).orElse(null);
     }
 
     @Override

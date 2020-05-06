@@ -61,7 +61,7 @@
                 <h3 class="text-center">Authorities</h3>
                 <hr>
                 <!-- Si no hay autorizaciones mostrar -->
-                <div class="card border-info col-12" th:if="${#lists.isEmpty(authorities)}">
+                <div class="card border-info col-12" th:if="${#lists.isEmpty(authorities) && #lists.isEmpty(user.authorities)}">
                     <div class="card-header">Authorities</div>
                     <div class="card-body text-info">
                         <h5 class="card-title">Without authorities for assign</h5>
@@ -75,6 +75,7 @@
                 <div class="authorities col-12" th:if="${!#lists.isEmpty(authorities)}">
                     <div class="col-12 form-check alert alert-info" th:each="autho : ${authorities}">
                         <input class="form-check-input ml-3" type="checkbox" name="idAuthos"
+                               th:checked="${user.authorities.contains(autho)}"
                                th:id="'autho'+${autho.idAutho}" th:value="${autho.idAutho}">
                         <label class="form-check-label ml-5" th:for="'autho'+${autho.idAutho}" th:text="${autho.name}">
                         </label>
