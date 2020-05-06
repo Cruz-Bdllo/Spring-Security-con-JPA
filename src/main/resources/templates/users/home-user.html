@@ -33,15 +33,18 @@
                     <td th:text="${user.rfc}"></td>
                     <td th:text="${user.firstName} + ${user.lastName}"></td>
                     <td th:text="${user.email}"></td>
-                    <td th:text="${user.enabled}"></td>
                     <td>
-                        <a th:href="@{'/view/'+${user.rfc}}">manager</a>
+                        <span class="badge p-2" th:classappend="${user.enabled ? ' badge-success':' badge-danger'}"
+                              th:text="${user.enabled} ? 'activo' : 'inactivo'"></span>
                     </td>
                     <td>
-                        <a th:href="@{'/update-user/'+${user.rfc}}">update</a>
+                        <a class="btn btn-primary" th:href="@{'/view/'+${user.rfc}}">managment</a>
                     </td>
                     <td>
-                        <a th:href="@{'/delete-user/'+${user.rfc}}">delete</a>
+                        <a class="btn btn-warning" th:href="@{'/update-user/'+${user.rfc}}">update</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" th:href="@{'/delete-user/'+${user.rfc}}">delete</a>
                     </td>
                 </tr>
             </tbody>

@@ -1,4 +1,18 @@
-body, html{
+html, body{
     height: 100%;
 }
 
+.background-login{
+    background: #336B87;
+}
+.color-title-login{
+    color: #763626;
+}
+
+.btn-login{
+    background: #763626;
+    color: #E5E8E8;
+}
+.btn-login:hover{
+    color:white;
+}
